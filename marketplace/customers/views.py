@@ -4,8 +4,13 @@ from rest_framework.response import Response
 from rest_framework import status, generics
 from .models import Customer, Order
 from .serializers import CustomerSerializer, OrderSerializer
+from rest_framework.decorators import api_view
+
 
 # Using APIView
+@api_view(['GET'])
+def home(request):
+    return Response({"message": "Customer Orders API"})
 class CustomerListCreateAPIView(APIView):
     def get(self, request):
         customers = Customer.objects.all()
