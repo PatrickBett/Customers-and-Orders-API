@@ -1,14 +1,15 @@
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
-
-# Load environment variables from .env
-load_dotenv(BASE_DIR / ".env")
+# # Load environment variables from .env
+# load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -131,12 +132,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-OIDC_RP_CLIENT_ID = os.getenv("OIDC_RP_CLIENT_ID")
-OIDC_RP_CLIENT_SECRET = os.getenv("OIDC_RP_CLIENT_SECRET")
-OIDC_OP_ISSUER = os.getenv("OIDC_OP_ISSUER")
-OIDC_OP_AUTHORIZATION_ENDPOINT = os.getenv("OIDC_OP_AUTHORIZATION_ENDPOINT")
-OIDC_OP_TOKEN_ENDPOINT = os.getenv("OIDC_OP_TOKEN_ENDPOINT")
-OIDC_OP_USER_ENDPOINT = os.getenv("OIDC_OP_USER_ENDPOINT")
+OIDC_RP_CLIENT_ID = env("OIDC_RP_CLIENT_ID")
+OIDC_RP_CLIENT_SECRET = env("OIDC_RP_CLIENT_SECRET")
+OIDC_OP_ISSUER = env("OIDC_OP_ISSUER")
+OIDC_OP_AUTHORIZATION_ENDPOINT = env("OIDC_OP_AUTHORIZATION_ENDPOINT")
+OIDC_OP_TOKEN_ENDPOINT = env("OIDC_OP_TOKEN_ENDPOINT")
+OIDC_OP_USER_ENDPOINT = env("OIDC_OP_USER_ENDPOINT")
 # JWKS endpoint (for verifying RS256 signatures)
-OIDC_OP_JWKS_ENDPOINT = os.getenv("OIDC_OP_JWKS_ENDPOINT")
-OIDC_RP_SIGN_ALGO = os.getenv("OIDC_RP_SIGN_ALGO")
+OIDC_OP_JWKS_ENDPOINT = env("OIDC_OP_JWKS_ENDPOINT")
+OIDC_RP_SIGN_ALGO = env("OIDC_RP_SIGN_ALGO")
