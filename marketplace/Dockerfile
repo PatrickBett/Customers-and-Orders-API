@@ -23,7 +23,7 @@ RUN pip install -r requirements.txt
 COPY . /app/
 
 # Collect static files (if any)
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput || true
 
 # Expose port 8000 for Render
 EXPOSE 8000
