@@ -31,4 +31,3 @@ responses==0.25.8
 schema==0.7.7
 sqlparse==0.5.3
 urllib3==2.5.0
-gunicorn

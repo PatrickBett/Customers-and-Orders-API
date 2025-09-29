@@ -25,5 +25,7 @@ COPY . /app/
 # Collect static files (if any)
 RUN python manage.py collectstatic --noinput
 
+# Expose port 8000 for Render
+EXPOSE 8000
 # Run the app
 CMD ["gunicorn", "marketplace.wsgi:application", "--bind", "0.0.0.0:8000"]
