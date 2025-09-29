@@ -46,7 +46,7 @@ To run this project, you will need the following installed:
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/PatrickBett/Customers-and-Orders-API.git](https://github.com/PatrickBett/Customers-and-Orders-API.git)
+    git clone (https://github.com/PatrickBett/Customers-and-Orders-API.git)
     cd Customers-and-Orders-API
     ```
 
