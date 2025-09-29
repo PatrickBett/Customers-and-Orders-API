@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Import the Order model (so we can listen for changes on it)
 from .models import Order
-# Import our custom SMS sending utility function
+#Import our custom SMS sending utility function
 from utils.sms import send_sms
 
 @receiver(post_save, sender=Order)
