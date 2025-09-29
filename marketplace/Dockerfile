@@ -26,6 +26,9 @@ COPY . /app/
 # Collect static files (if any)
 RUN python manage.py collectstatic --noinput || true
 
+# Add inner 'marketplace' folder to PYTHONPATH
+ENV PYTHONPATH=/app/marketplace
+
 # Expose port 8000 for Render
 EXPOSE 8000
 # Run the app
@@ -33,4 +36,4 @@ EXPOSE 8000
 # CMD gunicorn marketplace.wsgi:application --bind 0.0.0.0:$PORT
 # CMD gunicorn marketplace.marketplace.wsgi:application --bind 0.0.0.0:$PORT
 # CMD ["gunicorn", "marketplace.marketplace.wsgi:application", "--bind", "0.0.0.0:$PORT"]
-ENTRYPOINT ["sh", "-c", "gunicorn marketplace.marketplace.wsgi:application --bind 0.0.0.0:$PORT"]
+ENTRYPOINT ["sh", "-c", "gunicorn marketplace.wsgi:application --bind 0.0.0.0:$PORT"]
