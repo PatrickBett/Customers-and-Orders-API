@@ -19,7 +19,7 @@ COPY marketplace/requirements.txt /app/
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
+RUN pip install gunicorn
 # Copy project files
 COPY . /app/
 
