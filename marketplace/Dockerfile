@@ -29,4 +29,5 @@ RUN python manage.py collectstatic --noinput || true
 # Expose port 8000 for Render
 EXPOSE 8000
 # Run the app
-CMD ["gunicorn", "marketplace.wsgi:application", "--bind", "0.0.0.0:$PORT"]
+# CMD ["gunicorn", "marketplace.wsgi:application", "--bind", "0.0.0.0:$PORT"]
+CMD gunicorn marketplace.wsgi:application --bind 0.0.0.0:$PORT
