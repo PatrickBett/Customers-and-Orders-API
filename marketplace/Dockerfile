@@ -32,4 +32,5 @@ EXPOSE 8000
 # CMD ["gunicorn", "marketplace.wsgi:application", "--bind", "0.0.0.0:$PORT"]
 # CMD gunicorn marketplace.wsgi:application --bind 0.0.0.0:$PORT
 # CMD gunicorn marketplace.marketplace.wsgi:application --bind 0.0.0.0:$PORT
-CMD ["gunicorn", "marketplace.marketplace.wsgi:application", "--bind", "0.0.0.0:$PORT"]
+# CMD ["gunicorn", "marketplace.marketplace.wsgi:application", "--bind", "0.0.0.0:$PORT"]
+ENTRYPOINT ["sh", "-c", "gunicorn marketplace.marketplace.wsgi:application --bind 0.0.0.0:$PORT"]
