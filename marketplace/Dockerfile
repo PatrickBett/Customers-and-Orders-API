@@ -16,17 +16,17 @@ RUN apt-get update && apt-get install -y \
 
 # Install Python dependencies
 COPY requirements.txt /app/
-
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Copy project files
+# Copy project files (from marketplace/ into /app/)
 COPY . /app/
 
-# Collect static files (if any)
+# Collect static files (ignore errors if no static setup yet)
 RUN python manage.py collectstatic --noinput || true
 
 # Expose port 8000 for Render
 EXPOSE 8000
+
 # Run the app
 CMD ["gunicorn", "marketplace.wsgi:application", "--bind", "0.0.0.0:8000"]
