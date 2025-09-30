@@ -1,6 +1,8 @@
 # Customers and Orders API
 
 A robust **Django REST API** designed to manage customers and their orders. The system is secured with **OpenID Connect (OIDC)** and **JWT-based authentication** and includes automated **SMS notifications** upon order creation.
+This is the api url
+https://customers-and-orders-api.onrender.com/
 
 ---
 
