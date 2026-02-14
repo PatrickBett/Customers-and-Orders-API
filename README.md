@@ -35,7 +35,7 @@ https://customers-and-orders-api.onrender.com/
 
 ### Prerequisites
 
-To run this project, you will need the following installed:
+To run this project, you will need the following installed;:
 
 - **Python 3.13**
 - **pip**
