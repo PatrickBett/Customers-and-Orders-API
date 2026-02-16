@@ -6,15 +6,11 @@ from .models import CustomUser, Order
 from .serializers import CustomerSerializer, OrderSerializer
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes,authentication_classes
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import logout
 
 from django.shortcuts import redirect
-
-
-
-
 class CsrfExemptSessionAuthentication(SessionAuthentication):
     def enforce_csrf(self, request):
         return  # disables CSRF check
@@ -30,7 +26,6 @@ def login_success(request):
 @permission_classes([AllowAny])
 def home(request):
     return Response({"message": "Customer Orders API"})
-
 
 class CustomerListCreateAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -85,6 +80,8 @@ def current_user(request):
         "code": request.user.code,
     })
 @api_view(['POST'])
+@authentication_classes([CsrfExemptSessionAuthentication])
+@permission_classes([IsAuthenticated])
 def logout_view(request):
     logout(request)
     return Response({"detail": "Successfully logged out"}, status=200)
