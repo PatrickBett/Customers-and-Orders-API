@@ -11,5 +11,6 @@ from utils.sms import send_sms
 def send_order_sms(sender, instance, created, **kwargs):
     if created:
         customer = instance.customer
-        message = f"Hello {customer.name}, your order for {instance.item} of amount {instance.amount} has been received."
-        send_sms(customer.phone_number, message)
+        items = ", ".join([item.product_title for item in instance.items_in_order.all()])
+        message = f"Hello {customer.username}, your order of amount {instance.total_price} has been received."
+        send_sms(instance.phone_number, message)

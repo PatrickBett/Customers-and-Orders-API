@@ -20,12 +20,13 @@ SECRET_KEY = 'django-insecure-hy-2260wjle-aehcuk+736%v7@1356w5vc3w(mfp+nlje@z#r_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','customers-and-orders-api.onrender.com']
+ALLOWED_HOSTS = ['0.0.0.0','customers-and-orders-api.onrender.com','127.0.0.1','localhost:8000']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
         'mozilla_django_oidc.contrib.drf.OIDCAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
@@ -46,11 +48,12 @@ REST_FRAMEWORK = {
     ),
 }
 AUTHENTICATION_BACKENDS = (
-    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',  # OIDC backend
+    'customers.auth_backends.CustomOIDCBackend',  # OIDC backend
     'django.contrib.auth.backends.ModelBackend',          # default backend
 )
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -128,6 +131,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# settings.py
+AUTH_USER_MODEL = "customers.CustomUser"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -142,3 +149,27 @@ OIDC_OP_USER_ENDPOINT = env("OIDC_OP_USER_ENDPOINT")
 # JWKS endpoint (for verifying RS256 signatures)
 OIDC_OP_JWKS_ENDPOINT = env("OIDC_OP_JWKS_ENDPOINT")
 OIDC_RP_SIGN_ALGO = env("OIDC_RP_SIGN_ALGO")
+# Include scopes
+OIDC_RP_SCOPES = "openid email profile"
+OIDC_RP_SIGN_ALGO = "RS256"
+LOGIN_REDIRECT_URL = "/api/login-success/"
+LOGOUT_REDIRECT_URL = "http://127.0.0.1:5173"
+# LOGOUT_REDIRECT_URL = "http://localhost:5174/"
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5173",
+    'http://localhost:5173',
+]
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:5173",
+]
+CORS_ALLOW_CREDENTIALS = True  # must be True for session cookies
+
+
+# Allow the session cookie to work cross-site
+# SESSION_COOKIE_SAMESITE = None      # Important for cross-origin POST/GET after Google redirect
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SECURE = False       # Set True if using HTTPS
+# CSRF_COOKIE_SAMESITE = None
+CSRF_COOKIE_SECURE = False
