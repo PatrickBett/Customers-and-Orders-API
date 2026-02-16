@@ -153,7 +153,7 @@ OIDC_RP_SIGN_ALGO = env("OIDC_RP_SIGN_ALGO")
 OIDC_RP_SCOPES = "openid email profile"
 OIDC_RP_SIGN_ALGO = "RS256"
 LOGIN_REDIRECT_URL = "/api/login-success/"
-LOGOUT_REDIRECT_URL = "http://127.0.0.1:5173"
+LOGOUT_REDIRECT_URL = "https://customerorder.netlify.app"
 # LOGOUT_REDIRECT_URL = "http://localhost:5174/"
 
 CORS_ALLOWED_ORIGINS = [

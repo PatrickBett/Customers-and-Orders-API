@@ -22,7 +22,7 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 def login_success(request):
     if not request.user.is_authenticated:
         return Response({"detail": "Not authenticated"}, status=401)
-    return redirect("http://127.0.0.1:5173/dashboard")
+    return redirect("https://customerorder.netlify.app/dashboard")
 # Using APIView
 @api_view(['GET'])
 @permission_classes([AllowAny])
