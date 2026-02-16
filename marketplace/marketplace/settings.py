@@ -181,8 +181,8 @@ CORS_ALLOW_CREDENTIALS = True  # must be True for session cookies
 
 # Allow the session cookie to work cross-site
 # SESSION_COOKIE_SAMESITE = None      # Important for cross-origin POST/GET after Google redirect
-SESSION_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = None
+CSRF_COOKIE_SAMESITE = None
 SESSION_COOKIE_SECURE = False       # Set True if using HTTPS
 # CSRF_COOKIE_SAMESITE = None
 CSRF_COOKIE_SECURE = False
