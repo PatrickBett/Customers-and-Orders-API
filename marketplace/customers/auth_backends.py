@@ -10,15 +10,16 @@ class CustomOIDCBackend(OIDCAuthenticationBackend):
         name = claims.get("name", "")
         picture = claims.get("picture", "")
 
+          
+
+        # Generate a unique code
+        unique_code = str(uuid.uuid4())[:8]  # 8-char unique code
         # Print lengths and values
         print("username:", email, len(email))
         print("first_name:", name, len(name))
         print("last_name:", "", len(""))
         print("email:", email, len(email))
         print("code:", unique_code, len(unique_code))
-
-        # Generate a unique code
-        unique_code = str(uuid.uuid4())[:8]  # 8-char unique code
 
         user = User.objects.create(
             username=email,
