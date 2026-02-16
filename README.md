@@ -4,6 +4,9 @@ A robust **Django REST API** designed to manage customers and their orders. The 
 This is the api url
 https://customers-and-orders-api.onrender.com/
 
+Frontend to access and test
+https://customerorder.netlify.app/
+
 ---
 
 ## Table of Contents
