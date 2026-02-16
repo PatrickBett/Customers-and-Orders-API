@@ -6,6 +6,7 @@ cffi==2.0.0
 charset-normalizer==3.4.3
 coverage==7.10.7
 django-cors-headers
+dj-database-url
 cryptography==46.0.1
 Django==5.2.6
 django-environ==0.12.0
