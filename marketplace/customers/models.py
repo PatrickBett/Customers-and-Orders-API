@@ -13,7 +13,6 @@ class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20) 
-    # Logic: The items are linked via the OrderItem model below
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     order_time = models.DateTimeField(auto_now_add=True)
 

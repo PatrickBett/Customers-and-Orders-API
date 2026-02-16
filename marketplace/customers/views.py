@@ -18,11 +18,13 @@ from django.shortcuts import redirect
 class CsrfExemptSessionAuthentication(SessionAuthentication):
     def enforce_csrf(self, request):
         return  # disables CSRF check
+    
 @api_view(['GET'])
 def login_success(request):
     if not request.user.is_authenticated:
         return Response({"detail": "Not authenticated"}, status=401)
-    return redirect("https://customerorder.netlify.app/dashboard")
+    return redirect("http://127.0.0.1:5173/dashboard")
+
 # Using APIView
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -52,7 +54,10 @@ class OrderListCreateAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        orders = Order.objects.all()
+        user = request.user
+        if not user.is_authenticated:
+            return Response({"detail": "Not authenticated"}, status=401)
+        orders = Order.objects.filter(customer=user)
         serializer = OrderSerializer(orders, many=True)
         return Response(serializer.data)
 
@@ -66,7 +71,6 @@ class OrderListCreateAPIView(APIView):
 
 @api_view(['GET'])
 def current_user(request):
-    print("MY REQUEST",request)
     if not request.user.is_authenticated:
         return Response({"detail": "Not authenticated"}, status=401)
     
