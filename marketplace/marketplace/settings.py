@@ -176,16 +176,21 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5173",
     "https://customerorder.netlify.app",
 ]
+
 CORS_ALLOW_CREDENTIALS = True  # must be True for session cookies
 
 
 # Allow the session cookie to work cross-site
 # SESSION_COOKIE_SAMESITE = None      # Important for cross-origin POST/GET after Google redirect
-SESSION_COOKIE_SAMESITE = None
-CSRF_COOKIE_SAMESITE = None
-SESSION_COOKIE_SECURE = False       # Set True if using HTTPS
-# CSRF_COOKIE_SAMESITE = None
-CSRF_COOKIE_SECURE = False
+# SESSION_COOKIE_SAMESITE = 'Lax'
+# CSRF_COOKIE_SAMESITE = 'Lax'
+# SESSION_COOKIE_SECURE = False       # Set True if using HTTPS
+# # CSRF_COOKIE_SAMESITE = None
+# CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SAMESITE = 'None'  # Was 'Lax'
+CSRF_COOKIE_SAMESITE = 'None'     # Was 'Lax'
+SESSION_COOKIE_SECURE = True      # Was False (Must be True for 'None')
+CSRF_COOKIE_SECURE = True         # Was False (Must be True for 'None')
 
 # Forces Google to show the consent screen and account selection every time
 OIDC_AUTH_REQUEST_EXTRA_PARAMS = {
