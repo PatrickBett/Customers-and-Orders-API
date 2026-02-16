@@ -191,6 +191,7 @@ SESSION_COOKIE_SAMESITE = 'None'  # Was 'Lax'
 CSRF_COOKIE_SAMESITE = 'None'     # Was 'Lax'
 SESSION_COOKIE_SECURE = True      # Was False (Must be True for 'None')
 CSRF_COOKIE_SECURE = True         # Was False (Must be True for 'None')
+LOGOUT_ON_GET = True
 
 # Forces Google to show the consent screen and account selection every time
 OIDC_AUTH_REQUEST_EXTRA_PARAMS = {
