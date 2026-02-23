@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'customers',
     'rest_framework',
     'mozilla_django_oidc',
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {
